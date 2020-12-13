@@ -20,6 +20,10 @@ app.get('/atendimentos/:id', (req, res) => { //Novo get para mostrar por id
     const valores = req.body //Criar variável para receber os valores da requisição do body
     Atendimento.altera(id, valores, res) //Chamar o altera passando o id, valores e a resposta
   });
+  app.delete('/atendimentos/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+    Atendimento.deleta(id, res)
+  })
 };
 
 
@@ -39,4 +43,9 @@ app.get('/atendimentos/:id', (req, res) => { //Novo get para mostrar por id
     *Converter id para int
     *Criar variável para receber os valores da requisição do body
     *Chamar o altera passando o id, valores e a resposta
+*/
+/*
+ *Criar rota delete
+  *Converter id
+  *Chamar deleta passando id e res
 */

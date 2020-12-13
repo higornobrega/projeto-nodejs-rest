@@ -1,4 +1,5 @@
 const moment = require("moment");
+const atendimentos = require("../controller/atendimentos");
 const conexao = require("../infraestrutura/conexao");
 
 class Atendimento {
@@ -34,7 +35,7 @@ class Atendimento {
         if (erro) {
           res.status(400).json(erro);
         } else {
-          res.status(201).json(resultados);
+          res.status(201).json(atendimento);
         }
       });
     }
@@ -77,9 +78,20 @@ class Atendimento {
       if(erro){ //Tratamento de erro
         res.status(400).json(erro)
       } else {
-        res.status(200).json(resultados)
+        res.status(200).json(valores)
       }
     })
+  }
+
+  deleta(id, res){
+    const sql = 'DELETE FROM atendimentos WHERE id=?'
+    conexao.query(sql, id, (erro, resultados) => {
+      if (erro) {
+        res.status(400).json(erro)
+      } else {
+        res.status(200).json({id})
+      }
+     })
   }
 }
 module.exports = new Atendimento();
@@ -100,5 +112,11 @@ module.exports = new Atendimento();
   *Tratamento de erro
   *Se existir a data nos valores
   *Converter a data
+/*DELETE
+ *Criar método deleta que recebe id e res
+  *Criar a variável que recebe o DELETE enquanto for igual a algum id
+  *Criar conexão com o id
+  *Tratamento de erro
+
 
 */
